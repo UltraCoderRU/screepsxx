@@ -9,6 +9,7 @@
 namespace Screeps {
 
 class ConstructionSite;
+class Resource;
 class Source;
 class Store;
 class Structure;
@@ -53,7 +54,7 @@ public:
 
 	int ticksToLive() const;
 
-	int attack(const Object& target);
+	int attack(const RoomObject& target);
 
 	int attackController(const StructureController& target);
 
@@ -86,7 +87,7 @@ public:
 
 	int notifyWhenAttacked(bool enabled);
 
-	// int pickup(const Resource& target);
+	int pickup(const Resource& target);
 
 	int pull(const Creep& target);
 

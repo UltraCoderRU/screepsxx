@@ -5,10 +5,14 @@
 
 namespace Screeps {
 
+class Store;
+
 class StructureExtension : public Structure
 {
 public:
 	explicit StructureExtension(JS::Value value);
+
+	Store store() const;
 };
 
 } // namespace Screeps

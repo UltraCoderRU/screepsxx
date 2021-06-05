@@ -2,7 +2,10 @@
 
 #include "ConstructionSite.hpp"
 #include "Creep.hpp"
+#include "Deposit.hpp"
 #include "Effect.hpp"
+#include "Flag.hpp"
+#include "Resource.hpp"
 #include "Room.hpp"
 #include "RoomPosition.hpp"
 #include "Ruin.hpp"
@@ -10,6 +13,8 @@
 #include "StructureContainer.hpp"
 #include "StructureController.hpp"
 #include "StructureExtension.hpp"
+#include "StructureExtractor.hpp"
+#include "StructureLink.hpp"
 #include "StructureRampart.hpp"
 #include "StructureRoad.hpp"
 #include "StructureSpawn.hpp"
@@ -76,6 +81,8 @@ std::unique_ptr<RoomObject> createRoomObject(JS::Value object)
 		return std::make_unique<ConstructionSite>(std::move(object));
 	else if (is("StructureTower"))
 		return std::make_unique<StructureTower>(std::move(object));
+	else if (is("StructureLink"))
+		return std::make_unique<StructureLink>(std::move(object));
 	else if (is("StructureSpawn"))
 		return std::make_unique<StructureSpawn>(std::move(object));
 	else if (is("Ruin"))
@@ -84,6 +91,14 @@ std::unique_ptr<RoomObject> createRoomObject(JS::Value object)
 		return std::make_unique<StructureController>(std::move(object));
 	else if (is("StructureStorage"))
 		return std::make_unique<StructureStorage>(std::move(object));
+	else if (is("StructureExtractor"))
+		return std::make_unique<StructureExtractor>(std::move(object));
+	else if (is("Deposit"))
+		return std::make_unique<Deposit>(std::move(object));
+	else if (is("Flag"))
+		return std::make_unique<Flag>(std::move(object));
+	else if (is("Resource"))
+		return std::make_unique<Resource>(std::move(object));
 	else
 		return nullptr;
 }

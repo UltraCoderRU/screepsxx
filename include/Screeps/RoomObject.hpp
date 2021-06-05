@@ -12,7 +12,7 @@ class Room;
 class RoomObject : public Object
 {
 public:
-	RoomObject(JS::Value value);
+	explicit RoomObject(JS::Value value);
 
 	virtual ~RoomObject();
 

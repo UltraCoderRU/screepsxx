@@ -9,6 +9,8 @@ class StructureRoad : public Structure
 {
 public:
 	explicit StructureRoad(JS::Value value);
+
+	int ticksToDecay() const;
 };
 
 } // namespace Screeps

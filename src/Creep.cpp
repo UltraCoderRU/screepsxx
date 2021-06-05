@@ -7,6 +7,8 @@
 #include "Store.hpp"
 #include "StructureController.hpp"
 
+#include <Resource.hpp>
+
 namespace Screeps {
 
 Creep::Creep(JS::Value creep) : RoomObject(std::move(creep))
@@ -93,7 +95,7 @@ int Creep::ticksToLive() const
 	return value()["ticksToLive"].as<int>();
 }
 
-int Creep::attack(const Object& target)
+int Creep::attack(const RoomObject& target)
 {
 	return value().call<int>("attack", target.value());
 }
@@ -188,6 +190,11 @@ int Creep::moveTo(const RoomObject& target, const std::optional<JSON>& options)
 int Creep::notifyWhenAttacked(bool enabled)
 {
 	return value().call<int>("notifyWhenAttacked", enabled);
+}
+
+int Creep::pickup(const Resource& target)
+{
+	return value().call<int>("pickup", target.value());
 }
 
 int Creep::pull(const Creep& target)

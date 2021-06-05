@@ -5,6 +5,7 @@
 #include <nlohmann/json_fwd.hpp>
 
 #include <map>
+#include <string>
 #include <vector>
 
 using JSON = nlohmann::json;
@@ -25,8 +26,30 @@ Value getConstant(const std::string& name);
 
 bool isInstanceOf(const Value& val, const char* name);
 
-std::vector<Value> jsArrayToVector(const Value& array);
-std::map<std::string, Value> jsObjectToMap(const Value& object);
+template <typename T = Value>
+std::vector<T> jsArrayToVector(const Value& array)
+{
+	std::vector<T> result;
+	int size = array["length"].as<int>();
+	result.reserve(size);
+	for (int i = 0; i < size; ++i)
+		result.emplace_back(array[i].as<T>());
+	return result;
+}
+
+template <typename T = Value>
+std::map<std::string, T> jsObjectToMap(const Value& object)
+{
+	std::map<std::string, T> result;
+	Value keys = gObject.call<Value>("keys", object);
+	int size = keys["length"].as<int>();
+	for (int i = 0; i < size; ++i)
+	{
+		auto key = keys[i].as<std::string>();
+		result.emplace_hint(result.end(), key, object[key].as<T>());
+	}
+	return result;
+}
 
 template <typename T>
 Value vectorToJSArray(const std::vector<T>& vector)

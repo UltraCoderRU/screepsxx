@@ -2,10 +2,6 @@
 
 #include "JSON.hpp"
 
-#include <emscripten/bind.h>
-
-#include <string>
-
 namespace JS {
 
 Value getGlobal(char const* name)
@@ -26,35 +22,6 @@ Value getConstant(const std::string& name)
 bool isInstanceOf(const Value& value, const char* name)
 {
 	return value.instanceof (JS::Value::global(name));
-}
-
-std::vector<Value> jsArrayToVector(const Value& array)
-{
-	std::vector<Value> result;
-
-	int size = array["length"].as<int>();
-	result.reserve(size);
-
-	for (int i = 0; i < size; ++i)
-		result.emplace_back(array[i]);
-
-	return result;
-}
-
-std::map<std::string, Value> jsObjectToMap(const Value& object)
-{
-	std::map<std::string, Value> result;
-
-	Value keys = gObject.call<Value>("keys", object);
-	int size = keys["length"].as<int>();
-
-	for (int i = 0; i < size; ++i)
-	{
-		auto key = keys[i].as<std::string>();
-		result.emplace_hint(result.end(), key, object[key]);
-	}
-
-	return result;
 }
 
 Value fromJSONArray(const JSON& array)

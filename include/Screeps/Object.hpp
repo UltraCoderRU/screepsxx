@@ -8,6 +8,8 @@ namespace Screeps {
 class Object
 {
 public:
+	using Error = int;
+
 	JS::Value& value();
 	const JS::Value& value() const;
 	void setValue(JS::Value value);

@@ -3,6 +3,8 @@
 
 #include "Object.hpp"
 
+#include <optional>
+
 namespace Screeps {
 
 class Store : public Object

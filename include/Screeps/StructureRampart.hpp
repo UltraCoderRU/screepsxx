@@ -9,6 +9,12 @@ class StructureRampart : public Structure
 {
 public:
 	explicit StructureRampart(JS::Value value);
+
+	bool isPublic() const;
+
+	int ticksToDecay() const;
+
+	int setPublic(bool isPublic);
 };
 
 } // namespace Screeps
