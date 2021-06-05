@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.5)
-cmake_policy(SET CMP0015 NEW)
+cmake_minimum_required(VERSION 3.16)
 
 project(screepsxx CXX)
+
+option(SCREEPSXX_ENABLE_PCH ON "Enable precompiled headers")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -14,3 +15,14 @@ target_include_directories(screepsxx
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/Screeps
 )
+
+if (SCREEPSXX_ENABLE_PCH)
+	target_precompile_headers(screepsxx PRIVATE
+		<map>
+		<memory>
+		<optional>
+		<string>
+		<vector>
+		<emscripten/val.h>
+	)
+endif()
