@@ -17,7 +17,7 @@ convertObjectToMap(const JS::Value& object)
 {
 	std::map<std::string, T> map;
 	for (const auto& pair : JS::jsObjectToMap(object))
-		map.emplace(pair.first, T{pair.second});
+		map.insert(std::make_pair(pair.first, T{pair.second}));
 	return map;
 }
 
@@ -105,6 +105,11 @@ std::map<std::string, Structure> GameObject::structures() const
 int GameObject::time() const
 {
 	return value()["time"].as<int>();
+}
+
+double GameObject::cpuGetUsed()
+{
+	return value()["cpu"].call<double>("getUsed");
 }
 
 int GameObject::cpuGeneratePixel()
