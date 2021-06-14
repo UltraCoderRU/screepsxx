@@ -8,7 +8,7 @@ import humanize
 
 
 def get_file_list(directory):
-	return glob.glob(directory + '/*')
+	return map(os.path.normpath, glob.glob(directory + '/*'))
 
 
 def read_file_to_json_string(filename):
