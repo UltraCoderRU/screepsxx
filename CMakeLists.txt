@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.16)
 project(screepsxx CXX)
 
 option(SCREEPSXX_ENABLE_PCH "Enable precompiled headers" ON)
-option(SCREEPSXX_BUILD_EXAMPLE "Build example WASM application" OFF)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -26,8 +25,4 @@ if (SCREEPSXX_ENABLE_PCH)
 		<vector>
 		<emscripten/val.h>
 	)
-endif()
-
-if (SCREEPSXX_BUILD_EXAMPLE)
-	add_subdirectory(example)
 endif()

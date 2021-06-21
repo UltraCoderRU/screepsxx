@@ -9,37 +9,27 @@ It provides wrappers for the majority of classes in [Screeps API](https://docs.s
 * [Ninja](https://ninja-build.org) build system
 * (Optional) Python 3 interpreter for artifacts uploading
 
-## Building
+## Using library in CMake project
+1. Copy all files from `example` directory into your project directory.
+2. Place library sources somewhere inside your project directory.
+If you use git, the recommended way is to add library repository as a submodule.
+Or instead you can manually download and extract library files somewhere inside your project.
 ```shell
-git clone https://github.com/UltraCoderRU/screepsxx.git
-cd screepsxx
+cd <your_project_repo>
+git submodule add https://github.com/UltraCoderRU/screepsxx.git
+```
+
+3. Check top-level `CMakeLists.txt`.
+   You can disable automatic artifacts uploading, etc.
+4. Configure project. You need to pass location of Emscripten SDK to CMake command.
+   Also, always use Release build type! Debug version will not help you to debug WebAssembly code, but its size most probably will exceed 5MB limit of official Screeps server.
+```shell
 mkdir build
 cd build
-cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=<path_to_emsdk>/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=<path_to_emsdk>/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake ..
+```
+
+5. Build project, collect and upload artifacts.
+```shell
 cmake --build .
-# Add -DSCREEPSXX_BUILD_EXAMPLE=ON to build example application (see 'example' directory)
 ```
-
-## Using library in CMake project
-The simplest way to use screepsxx library is to add it to your project with `add_subdirectory()`:
-```cmake
-cmake_minimum_required(VERSION 3.16)
-
-project(MyProject CXX)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s STRICT=0 -s ASSERTIONS=0 -s ALLOW_MEMORY_GROWTH=1 -s ENVIRONMENT=shell -s MALLOC=emmalloc --cache ${CMAKE_BINARY_DIR}/cache")
-
-add_subdirectory(screepsxx)
-
-add_executable(myapp loop.cpp)
-target_link_libraries(myapp screepsxx)
-target_link_options(myapp PUBLIC -sMODULARIZE=1 --no-entry --bind)
-```
-
-Compiled WASM-module (`myapp.wasm`) and corresponding JavaScript module (`myapp.js`) will appear in your build directory (`CMAKE_BINARY_DIR`).
-To use them inside Screeps, you need two additional JavaScript modules located in `js` directory.
-Put all four files into one directory and upload them to Screeps server.
-You can use Python script `tools\upload.py`, see `example/CMakeLists.txt` for details.
