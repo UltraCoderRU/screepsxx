@@ -61,19 +61,16 @@ public:
 	template <class T>
 	std::vector<std::unique_ptr<RoomObject>> find(std::function<bool(const T&)> predicate = {}) const
 	{
-		std::vector<std::unique_ptr<RoomObject>> objects = find(T::findConstant);
 		if (predicate)
-			objects.erase(std::remove_if(objects.begin(), objects.end(),
-			                             [predicate](const std::unique_ptr<RoomObject>& object)
-			                             {
-				                             if (auto* ptr = dynamic_cast<T*>(object.get()))
-					                             return !predicate(*ptr);
-				                             else
-					                             return true;
-			                             }),
-			              objects.end());
-
-		return objects;
+		{
+			auto p = [&](const JS::Value& value)
+			{
+				return predicate(T(value));
+			};
+			return find(T::findConstant, p);
+		}
+		else
+			return find(T::findConstant);
 	}
 
 	int findExitTo(const std::string& room);

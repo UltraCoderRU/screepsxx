@@ -63,36 +63,42 @@ std::unique_ptr<RoomObject> createRoomObject(JS::Value object)
 	};
 
 	// FIXME: sort by rarity
-	if (is("StructureRoad"))
-		return std::make_unique<StructureRoad>(std::move(object));
-	else if (is("StructureWall"))
-		return std::make_unique<StructureWall>(std::move(object));
-	else if (is("StructureRampart"))
-		return std::make_unique<StructureRampart>(std::move(object));
-	else if (is("StructureExtension"))
-		return std::make_unique<StructureExtension>(std::move(object));
+	if (is("Structure"))
+	{
+		std::string type = object["structureType"].as<std::string>();
+		if (type == Screeps::STRUCTURE_ROAD)
+			return std::make_unique<StructureRoad>(std::move(object));
+		else if (type == Screeps::STRUCTURE_WALL)
+			return std::make_unique<StructureWall>(std::move(object));
+		else if (type == Screeps::STRUCTURE_RAMPART)
+			return std::make_unique<StructureRampart>(std::move(object));
+		else if (type == Screeps::STRUCTURE_EXTENSION)
+			return std::make_unique<StructureExtension>(std::move(object));
+		else if (type == Screeps::STRUCTURE_CONTAINER)
+			return std::make_unique<StructureContainer>(std::move(object));
+		else if (type == Screeps::STRUCTURE_TOWER)
+			return std::make_unique<StructureTower>(std::move(object));
+		else if (type == Screeps::STRUCTURE_LINK)
+			return std::make_unique<StructureLink>(std::move(object));
+		else if (type == Screeps::STRUCTURE_SPAWN)
+			return std::make_unique<StructureSpawn>(std::move(object));
+		else if (type == Screeps::STRUCTURE_CONTROLLER)
+			return std::make_unique<StructureController>(std::move(object));
+		else if (type == Screeps::STRUCTURE_STORAGE)
+			return std::make_unique<StructureStorage>(std::move(object));
+		else if (type == Screeps::STRUCTURE_EXTRACTOR)
+			return std::make_unique<StructureExtractor>(std::move(object));
+		else
+			return nullptr;
+	}
 	else if (is("Creep"))
 		return std::make_unique<Creep>(std::move(object));
-	else if (is("StructureContainer"))
-		return std::make_unique<StructureContainer>(std::move(object));
 	else if (is("Source"))
 		return std::make_unique<Source>(std::move(object));
 	else if (is("ConstructionSite"))
 		return std::make_unique<ConstructionSite>(std::move(object));
-	else if (is("StructureTower"))
-		return std::make_unique<StructureTower>(std::move(object));
-	else if (is("StructureLink"))
-		return std::make_unique<StructureLink>(std::move(object));
-	else if (is("StructureSpawn"))
-		return std::make_unique<StructureSpawn>(std::move(object));
 	else if (is("Ruin"))
 		return std::make_unique<Ruin>(std::move(object));
-	else if (is("StructureController"))
-		return std::make_unique<StructureController>(std::move(object));
-	else if (is("StructureStorage"))
-		return std::make_unique<StructureStorage>(std::move(object));
-	else if (is("StructureExtractor"))
-		return std::make_unique<StructureExtractor>(std::move(object));
 	else if (is("Deposit"))
 		return std::make_unique<Deposit>(std::move(object));
 	else if (is("Flag"))
