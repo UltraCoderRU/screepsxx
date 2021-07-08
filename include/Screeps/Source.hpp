@@ -1,6 +1,7 @@
 #ifndef SCREEPS_SOURCE_HPP
 #define SCREEPS_SOURCE_HPP
 
+#include "Constants.hpp"
 #include "RoomObject.hpp"
 
 namespace Screeps {
@@ -17,6 +18,8 @@ public:
 	std::string id() const;
 
 	int ticksToLive() const;
+
+	static const int findConstant = Screeps::FIND_SOURCES;
 };
 
 } // namespace Screeps
