@@ -19,6 +19,7 @@
 #include "StructureRoad.hpp"
 #include "StructureSpawn.hpp"
 #include "StructureStorage.hpp"
+#include "StructureTerminal.hpp"
 #include "StructureTower.hpp"
 #include "StructureWall.hpp"
 
@@ -88,6 +89,8 @@ std::unique_ptr<RoomObject> createRoomObject(JS::Value object)
 			return std::make_unique<StructureStorage>(std::move(object));
 		else if (type == Screeps::STRUCTURE_EXTRACTOR)
 			return std::make_unique<StructureExtractor>(std::move(object));
+		else if (type == Screeps::STRUCTURE_TERMINAL)
+			return std::make_unique<StructureTerminal>(std::move(object));
 		else
 			return nullptr;
 	}
