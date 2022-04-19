@@ -9,7 +9,7 @@ Value getGlobal(char const* name)
 	return Value::global(name);
 }
 
-Value getGlobal(std::string const& name)
+Value getGlobal(const std::string& name)
 {
 	return Value::global(name.c_str());
 }

@@ -125,7 +125,7 @@ int Creep::dismantle(const Structure& target)
 	return value().call<int>("dismantle", target.value());
 }
 
-int Creep::drop(std::string resourceType, std::optional<int> amount)
+int Creep::drop(const std::string& resourceType, std::optional<int> amount)
 {
 	if (amount)
 		return value().call<int>("drop", resourceType, *amount);
@@ -247,7 +247,9 @@ int Creep::suicide()
 	return value().call<int>("suicide");
 }
 
-int Creep::transfer(const Creep& target, std::string resourceType, std::optional<int> amount)
+int Creep::transfer(const Creep& target,
+                    const std::string& resourceType,
+                    const std::optional<int>& amount)
 {
 	if (amount)
 		return value().call<int>("transfer", target.value(), resourceType, *amount);
@@ -255,7 +257,9 @@ int Creep::transfer(const Creep& target, std::string resourceType, std::optional
 		return value().call<int>("transfer", target.value(), resourceType);
 }
 
-int Creep::transfer(const Structure& target, std::string resourceType, std::optional<int> amount)
+int Creep::transfer(const Structure& target,
+                    const std::string& resourceType,
+                    const std::optional<int>& amount)
 {
 	if (amount)
 		return value().call<int>("transfer", target.value(), resourceType, *amount);
@@ -268,7 +272,9 @@ int Creep::upgradeController(const StructureController& target)
 	return value().call<int>("upgradeController", target.value());
 }
 
-int Creep::withdraw(const RoomObject& target, std::string resourceType, std::optional<int> amount)
+int Creep::withdraw(const RoomObject& target,
+                    const std::string& resourceType,
+                    const std::optional<int>& amount)
 {
 	if (amount)
 		return value().call<int>("withdraw", target.value(), resourceType, *amount);

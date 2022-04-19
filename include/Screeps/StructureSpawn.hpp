@@ -51,7 +51,7 @@ public:
 
 	int cancel();
 
-	int setDirections(std::vector<int> directions);
+	int setDirections(const std::vector<int>& directions);
 };
 
 } // namespace Screeps

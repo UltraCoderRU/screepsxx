@@ -18,7 +18,7 @@ Store StructureLink::store() const
 	return Store(value()["store"]);
 }
 
-int StructureLink::transferEnergy(const StructureLink& target, std::optional<int> amount)
+int StructureLink::transferEnergy(const StructureLink& target, const std::optional<int>& amount)
 {
 	if (amount)
 		return value().call<int>("transferEnergy", target.value(), *amount);

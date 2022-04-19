@@ -21,7 +21,7 @@ public:
 
 	void remove();
 
-	int setColor(int color, std::optional<int> secondaryColor);
+	int setColor(int color, const std::optional<int>& secondaryColor);
 
 	int setPosition(int x, int y);
 	int setPosition(const RoomPosition& pos);

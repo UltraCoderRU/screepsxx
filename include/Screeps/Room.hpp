@@ -35,25 +35,25 @@ public:
 
 	// std::string serializePath(...)
 
-	// ... deserializePath(const std::string path);
+	// ... deserializePath(const std::string& path);
 
 	int createConstructionSite(int x,
 	                           int y,
-	                           std::string structureType,
-	                           std::optional<std::string> name = std::nullopt);
+	                           const std::string& structureType,
+	                           const std::optional<std::string>& name = std::nullopt);
 	int createConstructionSite(const RoomPosition& pos,
-	                           std::string structureType,
-	                           std::optional<std::string> name = std::nullopt);
+	                           const std::string& structureType,
+	                           const std::optional<std::string>& name = std::nullopt);
 
 	int createFlag(int x,
 	               int y,
-	               std::optional<std::string> name = std::nullopt,
-	               std::optional<std::string> color = std::nullopt,
-	               std::optional<std::string> secondaryColor = std::nullopt);
+	               const std::optional<std::string>& name = std::nullopt,
+	               const std::optional<std::string>& color = std::nullopt,
+	               const std::optional<std::string>& secondaryColor = std::nullopt);
 	int createFlag(const RoomPosition& pos,
-	               std::optional<std::string> name = std::nullopt,
-	               std::optional<std::string> color = std::nullopt,
-	               std::optional<std::string> secondaryColor = std::nullopt);
+	               const std::optional<std::string>& name = std::nullopt,
+	               const std::optional<std::string>& color = std::nullopt,
+	               const std::optional<std::string>& secondaryColor = std::nullopt);
 
 	std::vector<std::unique_ptr<RoomObject>>
 	find(int type, std::function<bool(const JS::Value&)> predicate = {}) const;
@@ -87,7 +87,7 @@ public:
 	// ... lookAt(int x, int y);
 	// ... lookAt(const RoomPosition& target);
 
-	// ... lookAtArea(int top, int left, int bottom, int right, std::optional<bool> asArray = std::nullopt);
+	// ... lookAtArea(int top, int left, int bottom, int right, const std::optional<bool>& asArray = std::nullopt);
 
 	// ... lookForAt(const std::string& type, int x, int y);
 	// ... lookForAt(const std::string& type, const RoomPosition& target);
@@ -97,7 +97,7 @@ public:
 	//                int left,
 	//                int bottom,
 	//                int right,
-	//                std::optional<bool> asArray = std::nullopt);
+	//                const std::optional<bool>& asArray = std::nullopt);
 };
 
 } // namespace Screeps

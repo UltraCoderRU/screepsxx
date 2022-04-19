@@ -20,7 +20,7 @@ public:
 	int send(const std::string& resourceType,
 	         int amount,
 	         const std::string& destination,
-	         std::optional<std::string> description = std::nullopt);
+	         const std::optional<std::string>& description = std::nullopt);
 };
 
 } // namespace Screeps

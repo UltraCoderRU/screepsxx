@@ -19,7 +19,7 @@ Store StructureTerminal::store() const
 int StructureTerminal::send(const std::string& resourceType,
                             int amount,
                             const std::string& destination,
-                            std::optional<std::string> description)
+                            const std::optional<std::string>& description)
 {
 	if (description)
 		return value().call<int>("send", resourceType, amount, destination, description);

@@ -66,7 +66,7 @@ public:
 
 	int dismantle(const Structure& target);
 
-	int drop(std::string resourceType, std::optional<int> amount);
+	int drop(const std::string& resourceType, std::optional<int> amount);
 
 	int generateSafeMode(const StructureController& target);
 
@@ -109,17 +109,17 @@ public:
 	int suicide();
 
 	int transfer(const Creep& target,
-	             std::string resourceType,
-	             std::optional<int> amount = std::nullopt);
+	             const std::string& resourceType,
+	             const std::optional<int>& amount = std::nullopt);
 	int transfer(const Structure& target,
-	             std::string resourceType,
-	             std::optional<int> amount = std::nullopt);
+	             const std::string& resourceType,
+	             const std::optional<int>& amount = std::nullopt);
 
 	int upgradeController(const StructureController& target);
 
 	int withdraw(const RoomObject& target,
-	             std::string resourceType,
-	             std::optional<int> amount = std::nullopt);
+	             const std::string& resourceType,
+	             const std::optional<int>& amount = std::nullopt);
 };
 
 } // namespace Screeps

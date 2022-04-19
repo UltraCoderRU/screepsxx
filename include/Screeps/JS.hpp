@@ -21,7 +21,7 @@ const static Value gGlobal = Value::global();
 const static Value gObject = Value::global("Object");
 
 Value getGlobal(char const* name);
-Value getGlobal(std::string const& name);
+Value getGlobal(const std::string& name);
 Value getConstant(const std::string& name);
 
 bool isInstanceOf(const Value& val, const char* name);

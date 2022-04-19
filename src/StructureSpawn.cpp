@@ -99,7 +99,7 @@ int StructureSpawn::Spawning::cancel()
 	return value().call<int>("cancel");
 }
 
-int StructureSpawn::Spawning::setDirections(std::vector<int> directions)
+int StructureSpawn::Spawning::setDirections(const std::vector<int>& directions)
 {
 	return value().call<int>("setDirections", JS::vectorToJSArray(directions));
 }

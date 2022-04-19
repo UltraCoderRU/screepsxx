@@ -16,7 +16,7 @@ public:
 
 	Store store() const;
 
-	int transferEnergy(const StructureLink& target, std::optional<int> amount = std::nullopt);
+	int transferEnergy(const StructureLink& target, const std::optional<int>& amount = std::nullopt);
 };
 
 } // namespace Screeps

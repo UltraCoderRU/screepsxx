@@ -74,7 +74,7 @@ public:
 
 	void cpuHalt();
 
-	int cpuSetShardLimits(std::map<std::string, int> limits);
+	int cpuSetShardLimits(const std::map<std::string, int>& limits);
 
 	int cpuUnlock();
 

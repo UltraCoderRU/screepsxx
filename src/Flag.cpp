@@ -39,7 +39,7 @@ void Flag::remove()
 	value().call<void>("remove");
 }
 
-int Flag::setColor(int color, std::optional<int> secondaryColor)
+int Flag::setColor(int color, const std::optional<int>& secondaryColor)
 {
 	if (secondaryColor)
 		return value().call<int>("setColor", color, *secondaryColor);
