@@ -5,7 +5,10 @@ project(example CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s STRICT=0 -s ASSERTIONS=0 -s ALLOW_MEMORY_GROWTH=1 -s ENVIRONMENT=shell -s MALLOC=emmalloc --cache ${CMAKE_BINARY_DIR}/cache")
+set(COMPILE_FLAGS --cache ${CMAKE_BINARY_DIR}/cache)
+set(LINK_FLAGS -sASSERTIONS=0 -sMALLOC=emmalloc)
+add_compile_options(${COMPILE_FLAGS})
+add_link_options(${COMPILE_FLAGS} ${LINK_FLAGS})
 
 add_subdirectory(screepsxx)
 
