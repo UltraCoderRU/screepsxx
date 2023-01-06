@@ -1,3 +1,5 @@
+> **Important!** I do not plan to continue development of this project. Feel free to create a fork.
+
 # screepsxx
 
 **screepsxx** is a C++ library for [Screeps](https://screeps.com) API.
